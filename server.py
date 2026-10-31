@@ -1,0 +1,12 @@
+import socket
+ip_server = input()
+port = int(input())
+s = socket.socket()
+s.bind((ip_server, port))
+s.listen(1)
+socket_1, addr = s.accept()
+data = socket_1.recv(4096)
+print(f"Answer client: {data.decode("utf-8")}")
+socket_1.sendall("Connect True".encode("utf-8"))
+socket_1.close()
+s.close()
